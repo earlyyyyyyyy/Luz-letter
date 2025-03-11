@@ -5,6 +5,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
+        /* Custom CSS for the envelope animation */
         .envelope {
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -18,8 +19,10 @@
             display: none;
             opacity: 0;
             transition: opacity 0.5s ease;
+            width: 90%;
+            /* Adjust width to fit the screen */
             max-width: 800px;
-            margin: auto;
+            /* Increase max-width */
         }
 
         .letter.open {
@@ -27,12 +30,16 @@
             opacity: 1;
         }
 
+        /* Rose positioning */
         .rose {
-            width: 150px;
-            height: 150px;
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.8;
             transition: transform 0.6s ease-in-out;
         }
 
+        /* Custom hover effect for spin */
         .rose:hover {
             transform: rotate(360deg) scale(1.1);
         }
@@ -50,82 +57,203 @@
         }
 
         .modal-content {
-            background-color: #fff;
-            margin: 10% auto;
+            background-color: #fefefe;
+            margin: 15% auto;
             padding: 20px;
-            border-radius: 10px;
-            max-width: 400px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
         }
 
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
+    <link rel="icon" type="image/png" href="./logo.jpg">
+
 </head>
 
-<body class="bg-pink-100 flex flex-col items-center justify-center min-h-screen">
-
-    <!-- Envelope -->
-    <div id="envelope" class="envelope">
-        <img src="flower.gif" alt="Envelope Animation" class="h-40 w-40">
-        <p class="mt-2 text-red-600 font-semibold text-center">Click the flower to open the letter</p>
+<body class="bg-pink-100 flex items-center justify-center min-h-screen overflow-hidden">
+    <!-- Audio element -->
+    <audio id="background-music" src="music.mp3" autoplay loop></audio>
+    <!-- Roses around the screen -->
+    <div class="rose top-0 left-0 text-center" onclick="openModal('modal1')">
+        <img src="./roses.png" alt="Rose" class="w-full h-full">
+        <span class="block text-sm text-gray-600">Click Me😍</span>
     </div>
 
-    <!-- Letter -->
-    <div id="letter" class="letter bg-white p-6 rounded-lg shadow-lg">
-        <h1 class="text-2xl font-bold text-pink-600 mb-4">Hi Luz,</h1>
-        <p class="text-gray-700">
-            Ginawa ko ‘tong letter na ‘to para iparamdam sayo kung gaano kita kamahal...
-        </p>
+    <div class="rose top-0 right-0 text-center" onclick="openModal('modal2')">
+        <img src="./roses.png" alt="Rose" class="w-full h-full">
+        <span class="block text-sm text-gray-600">Click Me🥰</span>
     </div>
 
-    <!-- Roses with Modal -->
-    <div class="grid grid-cols-2 gap-4 mt-6">
-        <div class="rose text-center" onclick="openModal('modal1')">
-            <img src="./roses.png" class="w-full rounded-lg">
-            <p>Click Me🥰</p>
+    <div class="rose bottom-10 left-20 text-center" onclick="openModal('modal3')">
+        <img src="./roses.png" alt="Rose" class="w-full h-full">
+        <span class="block text-sm text-gray-600">Click Me😊</span>
+    </div>
+
+    <div class="rose bottom-10 right-40 text-center" onclick="openModal('modal4')">
+        <img src="./roses.png" alt="Rose" class="w-full h-full">
+        <span class="block text-sm text-gray-600">Click Me😡</span>
+    </div>
+
+
+    <!-- Main Content -->
+    <div class="text-center relative z-10">
+        <!-- Envelope -->
+        <div id="envelope" class="envelope">
+            <img src="flower.gif" alt="Envelope Animation" class="h-50 w-50 mx-auto">
+            <p class="mt-2 text-red-600 font-semibold">Click the flower to open the letter</p>
         </div>
-        <div class="rose text-center" onclick="openModal('modal2')">
-            <img src="./roses.png" class="w-full rounded-lg">
-            <p>Click Me😊</p>
+
+        <!-- Letter -->
+        <div id="letter" class="letter mt-8 bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
+            <h1 class="text-3xl font-bold text-pink-600 mb-4">Hi luz,</h1>
+            <p class="text-gray-700 text-left">
+                Ginawa ko ‘tong letter na ‘to para iparamdam sayo kung gaano kita kamahal. Simula nung sinabi mong wala
+                pang nagbigay
+                sayo ng flowers nung Valentine's, hindi na siya nawala sa isip ko. Plano ko talaga sanang bigyan ka
+                noon, pero hindi
+                natuloy. Kaya naisip ko, bakit ko pa hihintayin ang Valentine's kung pwede ko naman ibigay sayo kahit
+                bukas?
+            </p>
+            <p class="text-gray-700 text-left mt-4">
+                Naalala ko dati, ako yung laging bumibili sayo ng iced coffee kahit hindi naman talaga ako mahilig sa
+                kape gusto ko lang
+                talaga makita ka at makausap ka kahit sandali. Haha, nakakatawa nga eh, kasi minsan na-stun ako sa ganda
+                mo tameme ako
+                nung time nayon. Kaya kahit minsan nonsense na yung mga tanong ko sayo, tinutuloy ko pa rin para lang
+                magtagal yung
+                usapan natin. Pinagluto pa nga kita dati, inoffer ko sayo lahat kahit pati mga laro ko dati pero 
+                para makuha ko yung attention mo.
+            </p>
+
+            <p class="text-gray-700 text-left mt-4">
+                Hanggang dumating yung time na nilakasan ko loob ko at umamin ako sayo. Nung first time kong sunduin ka,
+                grabe, sobrang
+                kaba ko nun, pero pinush ko sarili ko kasi gusto talaga kita my mind say”act normal,poker face”haha.
+                Kahit andyan yung
+                mga friends mo, hinayaan konalang kung ano isipin nila, basta mahalaga makasama ka. Tapos nung nagkaroon
+                tayo ng
+                matinong usapan for the first time, sobrang saya ko nun as in parang ang gaan lang sa pakiramdam na
+                sabay thank you lord
+                dahil may progress.
+            </p>
+            <p class="text-gray-700 text-left mt-4">
+                Alam ko naman na hindi ako mayaman, hindi ako matalino, at lalong hindi ako perfect. Pero I assure you
+                na sayo lang yung
+                puso ko, yung intention ko sayo, pure at totoo. Isa ka sa mga pangarap ko at willing akong mag-effort
+                para mapatunayan
+                sayo na seryoso ako at I always telling kay lord na if I given I chance I will never waste the
+                opportunity kase losing
+                you is my biggest mistake in my life.
+            </p>
+            <p class="text-gray-700 text-left mt-4">
+                Kaya eto, binibigyan kita ng flowers kahit hindi Valentine's. Kase you deserve to love and care
+                actually, you deserve so
+                much more. Gusto ko lang malaman mo na Hindi kita gusto... dahil mahal na kita. ❤️
+                PS:ang hina ko talaga sa ganto hindi sweet haha at sorry hinde ako natulog kase ginawa koto nung
+                pagkauwi ko sa bahay at
+                I hope magustuhan mo</p>
+            <p class="text-pink-600 font-semibold text-left">[Earl]</p>
         </div>
     </div>
 
-    <!-- Modals -->
+    <!-- Enhanced Box-Style Modals -->
     <div id="modal1" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal1')">&times;</span>
-            <img src="./luz1.jpg" class="rounded-lg">
-            <p>Your smile brightens my world. ❤️</p>
+        <div class="modal-content bg-white p-3 rounded-xl shadow-lg w-70 h-70 flex flex-col items-center">
+            <span class="close text-gray-500 text-lg cursor-pointer self-end"
+                onclick="closeModal('modal1')">&times;</span>
+            <div class="w-40 h-60 overflow-hidden rounded-lg">
+                <img src="./luz22.jpg" alt="Photo 1" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <p class="text-xs text-gray-600 mt-2 text-center">You make my day brighter. 💖</p>
         </div>
     </div>
 
     <div id="modal2" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal2')">&times;</span>
-            <img src="./luz2.jpg" class="rounded-lg">
-            <p>You make my day brighter. 💖</p>
+        <div class="modal-content bg-white p-3 rounded-xl shadow-lg w-70 h-70 flex flex-col items-center">
+            <span class="close text-gray-500 text-lg cursor-pointer self-end"
+                onclick="closeModal('modal2')">&times;</span>
+            <div class="w-40 h-60 overflow-hidden rounded-lg">
+                <img src="./luz1.jpg" alt="Photo 2" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <p class="text-xs text-gray-600 mt-2 text-center">Your smile brightens my world. ❤️</p>
         </div>
     </div>
 
+    <div id="modal3" class="modal">
+        <div class="modal-content bg-white p-3 rounded-xl shadow-lg w-70 h-70 flex flex-col items-center">
+            <span class="close text-gray-500 text-lg cursor-pointer self-end"
+                onclick="closeModal('modal3')">&times;</span>
+            <div class="w-40 h-60 overflow-hidden rounded-lg">
+                <img src="./luz3.jpg" alt="Photo 3" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <p class="text-xs text-gray-600 mt-2 text-center">You make the world stop. ✨💕</p>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content bg-white p-3 rounded-xl shadow-lg w-70 h-70 flex flex-col items-center">
+            <span class="close text-gray-500 text-lg cursor-pointer self-end"
+                onclick="closeModal('modal4')">&times;</span>
+            <div class="w-40 h-60 overflow-hidden rounded-lg">
+                <img src="./luz4.jpg" alt="Photo 4" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <p class="text-xs text-gray-600 mt-2 text-center">Watching you eat fills my heart. ✌️❤️</p>
+        </div>
+    </div>
+
+
+
     <script>
+        // JavaScript to handle the envelope click
         const envelope = document.getElementById('envelope');
         const letter = document.getElementById('letter');
 
         envelope.addEventListener('click', () => {
-            envelope.style.display = 'none';
-            letter.classList.add('open');
+            envelope.style.display = 'none'; // Hide the envelope
+            letter.classList.add('open'); // Show the letter
         });
 
-        function openModal(id) {
-            document.getElementById(id).style.display = 'block';
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
         }
 
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
         }
+
+        window.addEventListener('load', () => {
+            const music = document.getElementById('background-music');
+
+            // Try to play the music when the page loads
+            music.play().catch(() => {
+                // If autoplay is blocked, ask the user for interaction
+                document.body.addEventListener('click', () => {
+                    music.play();
+                }, { once: true });
+            });
+        });
+
+        // Play the music once the letter opens
+        envelope.addEventListener('click', () => {
+            envelope.style.display = 'none';
+            letter.classList.add('open');
+            document.getElementById('background-music').play();
+        });
+
     </script>
 </body>
 
