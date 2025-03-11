@@ -79,34 +79,6 @@
             text-decoration: none;
             cursor: pointer;
         }
-
-        /* Responsive design for smaller screens */
-        @media (max-width: 640px) {
-            .letter {
-                width: 100%;
-                padding: 1rem;
-            }
-
-            .modal-content {
-                width: 90%;
-                margin: 20% auto;
-            }
-
-            .rose {
-                width: 100px;
-                height: 100px;
-            }
-
-            .envelope img {
-                width: 100px;
-                height: 100px;
-            }
-
-            .modal-content img {
-                width: 100%;
-                height: auto;
-            }
-        }
     </style>
     <link rel="icon" type="image/png" href="./logo.jpg">
 
@@ -118,7 +90,6 @@
     <!-- Roses around the screen -->
     <div class="rose top-0 left-0 text-center" onclick="openModal('modal1')">
         <img src="./roses.png" alt="Rose" class="w-full h-full">
-        <span class="block text-sm text-gray-600">Click Me😍</span>
     </div>
 
     <div class="rose top-0 right-0 text-center" onclick="openModal('modal2')">
